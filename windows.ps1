@@ -7,16 +7,15 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 choco feature enable -n=allowGlobalConfirmation
 choco feature enable -n=useRememberedArgumentsForUpgrades
 
+Write-Output("Installation de la langue fr-FR...")
+Install-Language fr-FR -CopyToSettings
+
 Write-Output("Telechargement & Installation de Valorant...")
 Invoke-WebRequest -Uri "https://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.live.eu.exe" -OutFile "$HOME\Downloads\valo_install_eu.exe"
 Start-Process -Filepath "$HOME\Downloads\valo_install_eu.exe"
 
-Write-Output("Telechargement & Installation de Bnet...")
-Invoke-WebRequest -Uri "https://www.battle.net/download/getInstallerForGame?os=win&gameProgram=BATTLENET_APP&version=Live&id=undefined" -OutFile "$HOME\Downloads\bnet.exe"
-Start-Process -Filepath "$HOME\Downloads\bnet.exe"
-
 Write-Output("Installation des programmes...")
-choco install brave discord spotify steam 7zip.install vlc f.lux.install eartrumpet icue nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset vscode
+choco install brave discord spotify steam 7zip.install mpv f.lux.install eartrumpet icue nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset vscode obs-studio github-desktop
 
 Write-Output("Dark Mode...")
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0

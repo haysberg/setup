@@ -12,7 +12,7 @@ Invoke-WebRequest -Uri "https://valorant.secure.dyn.riotcdn.net/channels/public/
 Start-Process -Filepath "$HOME\Downloads\valo_install_eu.exe"
 
 Write-Output("Installation de la langue fr-FR...")
-Install-Language fr-FR
+Install-Language -CopyToSettings fr-FR 
 
 Write-Output("Installation des programmes...")
 choco install waterfox discord spotify steam 7zip.install mpv eartrumpet nvidia-display-driver --params "'/DCH'" greenshot overwolf obs-studio

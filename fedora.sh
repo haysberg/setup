@@ -22,16 +22,12 @@ gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.desktop.interface enable-hot-corners false
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 
-echo "Flatpak..."
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
 flatpak install -y \
 com.discordapp.Discord \
-com.axosoft.GitKraken \
 com.mattjakeman.ExtensionManager \
-org.mozilla.firefox/x86_64/stable \
 com.slack.Slack \
-com.spotify.Client 
-
+com.spotify.Client \
+io.github.shiftey.Desktop \
+com.brave.Browser
 
 hostnamectl set-hostname thiccpad

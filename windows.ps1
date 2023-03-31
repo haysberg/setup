@@ -15,7 +15,7 @@ Invoke-WebRequest -Uri "https://valorant.secure.dyn.riotcdn.net/channels/public/
 Start-Process -Filepath "$HOME\Downloads\valo_install_eu.exe"
 
 Write-Output("Installation des programmes...")
-choco install brave discord spotify steam 7zip.install mpv f.lux.install eartrumpet icue nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset vscode obs-studio github-desktop
+choco install waterfox discord spotify steam 7zip.install mpv f.lux.install eartrumpet icue nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset vscode obs-studio github-desktop termius
 
 Write-Output("Dark Mode...")
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0

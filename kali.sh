@@ -1,15 +1,32 @@
 #!/bin/bash
 
-sudo apt update -y 
-sudo apt upgrade -y
+echo "Setup Jetbrains Mono..."
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
 
 echo "GNOME Settings..."
+gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrains Mono 11'
 gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true
 gsettings set org.gnome.desktop.peripherals.touchpad click-method 'area'
 gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.desktop.interface enable-hot-corners false
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+
+sudo apt update -y
+sudo apt remove -y firefox
+sudo apt autoremove -y
+sudo apt upgrade -y
+
+echo "Installing VSCode..."
+sudo apt-get install wget gpg
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+rm -f packages.microsoft.gpg
+
+sudo apt install apt-transport-https
+sudo apt update
+sudo apt install code-insiders
 
 # Other apps on FlatHub
 echo "Flatpak..."
@@ -23,7 +40,7 @@ md.obsidian.Obsidian \
 com.slack.Slack \
 com.spotify.Client \
 com.visualstudio.code \
-com.brave.Browser
+org.mozilla.firefox
 
 #Setup DNS
 

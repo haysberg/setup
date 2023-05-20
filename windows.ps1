@@ -14,8 +14,11 @@ Write-Output("Telechargement & Installation de Valorant...")
 Invoke-WebRequest -Uri "https://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.live.eu.exe" -OutFile "$HOME\Downloads\valo_install_eu.exe"
 Start-Process -Filepath "$HOME\Downloads\valo_install_eu.exe"
 
+Write-Output("Installation de Firefox Beta...")
+choco install firefox-beta --pre 
+
 Write-Output("Installation des programmes...")
-choco install waterfox discord spotify jetbrainsmono steam 7zip.install mpv f.lux.install eartrumpet icue nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset vscode obs-studio github-desktop termius
+choco install discord spotify jetbrainsmono steam 7zip.install mpv f.lux.install eartrumpet icue nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset vscode obs-studio github-desktop termius microsoft-windows-terminal
 
 Write-Output("Dark Mode...")
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0

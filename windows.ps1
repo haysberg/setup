@@ -23,6 +23,8 @@ choco install discord spotify jetbrainsmono steam 7zip.install mpv f.lux.install
 Write-Output("Dark Mode...")
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
 
+reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
+
 # Set DNS to dns0.eu :
 Set-DnsClientServerAddress -InterfaceAlias Ethernet -ServerAddresses ("193.110.81.0","185.253.5.0")
 Set-DNSClientServerAddress "Ethernet" -ServerAddresses (“2a0f:fc80::”,”2a0f:fc81::”)

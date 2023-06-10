@@ -15,7 +15,7 @@ Invoke-WebRequest -Uri "https://valorant.secure.dyn.riotcdn.net/channels/public/
 Start-Process -Filepath "$HOME\Downloads\valo_install_eu.exe"
 
 Write-Output("Installation de Firefox Beta...")
-choco install firefox-beta --pre 
+choco install brave --pre 
 
 Write-Output("Installation des programmes...")
 choco install discord spotify jetbrainsmono steam 7zip.install mpv f.lux.install eartrumpet icue nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset vscode obs-studio github-desktop termius microsoft-windows-terminal

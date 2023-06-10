@@ -40,7 +40,7 @@ md.obsidian.Obsidian \
 com.slack.Slack \
 com.spotify.Client \
 com.visualstudio.code \
-org.mozilla.firefox
+com.brave.Browser
 
 #Setup DNS
 

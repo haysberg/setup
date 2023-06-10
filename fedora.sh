@@ -11,7 +11,7 @@ com.mattjakeman.ExtensionManager \
 com.slack.Slack \
 com.spotify.Client \
 io.github.shiftey.Desktop \
-org.mozilla.firefox
+com.brave.Browser
 
 echo "Repo VSCode..."
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc

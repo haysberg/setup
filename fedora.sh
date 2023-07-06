@@ -1,17 +1,12 @@
 #!/bin/bash
 
-echo "Setup Jetbrains Mono..."
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
-
-gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrains Mono 11'
-
 flatpak install -y \
 com.discordapp.Discord \
 com.mattjakeman.ExtensionManager \
-com.slack.Slack \
 com.spotify.Client \
-io.github.shiftey.Desktop \
-com.brave.Browser
+com.axosoft.GitKraken \
+com.brave.Browser \
+md.obsidian.Obsidian
 
 echo "Repo VSCode..."
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -19,10 +14,10 @@ sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.m
 
 echo "Installation des paquets..."
 sudo dnf check-update
-sudo dnf remove -y *libreoffice* gnome-weather gnome-maps gnome-boxes *cheese* simple-scan rhythmbox firefox
+sudo dnf remove -y *libreoffice* gnome-weather gnome-photos gnome-calendar gnome-maps gnome-boxes *cheese* simple-scan rhythmbox firefox
 sudo dnf autoremove -y
 sudo dnf update -y
-sudo dnf install -y git code dnf-plugins-core gnome-tweaks dnf-plugins-core distrobox
+sudo dnf install -y git code dnf-plugins-core dnf-plugins-core
 
 flatpak update -y
 
@@ -34,4 +29,4 @@ gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.desktop.interface enable-hot-corners false
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

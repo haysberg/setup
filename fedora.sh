@@ -19,7 +19,6 @@ md.obsidian.Obsidian \
 org.mozilla.Thunderbird \
 org.telegram.desktop \
 org.signal.Signal \
-flathub io.mpv.Mpv \
 com.github.taiko2k.tauonmb
 
 echo "Repo VSCode..."
@@ -31,10 +30,21 @@ sudo dnf check-update
 sudo dnf remove -y *libreoffice* gnome-weather gnome-photos gnome-calendar gnome-maps gnome-boxes *cheese* simple-scan rhythmbox firefox
 sudo dnf autoremove -y
 sudo dnf update -y
-sudo dnf install -y git code dnf-plugins-core dnf-plugins-core git fish
+
+sudo cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=0
+gpgkey=https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+
+sudo dnf install -y git code dnf-plugins-core dnf-plugins-core fish helm distrobox kubectl
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
-gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrains Mono 12'
+gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrains Mono 11'
 
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 fish -c 'omf install bobthefish'

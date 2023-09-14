@@ -6,8 +6,7 @@ gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.desktop.interface enable-hot-corners false
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
-
-flatpak update -y
+gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
 
 flatpak install -y \
 com.discordapp.Discord \
@@ -16,10 +15,8 @@ com.spotify.Client \
 com.axosoft.GitKraken \
 com.brave.Browser \
 md.obsidian.Obsidian \
-org.mozilla.Thunderbird \
 org.telegram.desktop \
-org.signal.Signal \
-com.github.taiko2k.tauonmb
+org.signal.Signal
 
 echo "Repo VSCode..."
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc

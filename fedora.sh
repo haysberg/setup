@@ -8,15 +8,14 @@ gsettings set org.gnome.desktop.interface enable-hot-corners false
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
 
-flatpak install -y \
+flatpak install flathub -y \
 com.discordapp.Discord \
-com.mattjakeman.ExtensionManager \
 com.spotify.Client \
 com.axosoft.GitKraken \
-com.brave.Browser \
 md.obsidian.Obsidian \
 org.telegram.desktop \
-org.signal.Signal
+org.signal.Signal \
+org.mozilla.firefox
 
 echo "Repo VSCode..."
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc

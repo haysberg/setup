@@ -11,14 +11,14 @@ Write-Output("Telechargement & Installation de Valorant...")
 Invoke-WebRequest -Uri "https://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.live.eu.exe" -OutFile "$HOME\Downloads\valo_install_eu.exe"
 Start-Process -Filepath "$HOME\Downloads\valo_install_eu.exe"
 
+Write-Output("Telechargement & Installation de NGENUITY...")
+Invoke-WebRequest -Uri "https://hyperx.gg/ngenuity-installer" -OutFile "$HOME\Downloads\ngenuity.exe"
+Start-Process -Filepath "$HOME\Downloads\ngenuity.exe"
+
 Write-Output("Installation des programmes...")
-choco install discord spotify firefox jetbrainsmono steam 7zip.install mpv f.lux.install eartrumpet icue nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset vscode obs-studio github-desktop termius microsoft-windows-terminal
+choco install discord spotify firefox jetbrainsmono steam 7zip.install mpv f.lux.install eartrumpet nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset vscode obs-studio github-desktop
 
 Write-Output("Dark Mode...")
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
 
 reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
-
-# Set DNS to dns0.eu :
-Set-DnsClientServerAddress -InterfaceAlias Ethernet -ServerAddresses ("193.110.81.0","185.253.5.0")
-Set-DNSClientServerAddress "Ethernet" -ServerAddresses (“2a0f:fc80::”,”2a0f:fc81::”)

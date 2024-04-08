@@ -8,17 +8,33 @@ choco feature enable -n=allowGlobalConfirmation
 choco feature enable -n=useRememberedArgumentsForUpgrades
 
 Write-Output("Telechargement & Installation de Valorant...")
-Invoke-WebRequest -Uri "https://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.live.eu.exe" -OutFile "$HOME\Downloads\valo_install_eu.exe"
-Start-Process -Filepath "$HOME\Downloads\valo_install_eu.exe"
+$job1 = Start-Job {
+    Invoke-WebRequest -Uri "https://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.live.eu.exe" -OutFile "$HOME\Downloads\valo_install_eu.exe"
+    Start-Process -Filepath "$HOME\Downloads\valo_install_eu.exe"
+}
 
 Write-Output("Telechargement & Installation de NGENUITY...")
-Invoke-WebRequest -Uri "https://hyperx.gg/ngenuity-installer" -OutFile "$HOME\Downloads\ngenuity.exe"
-Start-Process -Filepath "$HOME\Downloads\ngenuity.exe"
+$job2 = Start-Job {
+    Invoke-WebRequest -Uri "https://hyperx.gg/ngenuity-installer" -OutFile "$HOME\Downloads\ngenuity.exe"
+    Start-Process -Filepath "$HOME\Downloads\ngenuity.exe"
+}
+
+Write-Output("Telechargement & Installation de Spotify...")
+$job3 = Start-Job {
+    Invoke-WebRequest -Uri "https://download.scdn.co/SpotifySetup.exe" -OutFile "$HOME\Downloads\SpotifySetup.exe"
+    Start-Process -Filepath "$HOME\Downloads\SpotifySetup.exe"
+}
+
+Write-Output("Telechargement & Installation de Steam...")
+$job4 = Start-Job {
+    Invoke-WebRequest -Uri "https://cdn.cloudflare.steamstatic.com/client/installer/SteamSetup.exe" -OutFile "$HOME\Downloads\SteamSetup.exe"
+    Start-Process -Filepath "$HOME\Downloads\SteamSetup.exe"
+}
 
 Write-Output("Installation des programmes...")
-choco install discord spotify firefox jetbrainsmono steam 7zip.install mpv f.lux.install eartrumpet nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset vscode obs-studio github-desktop
+choco install discord jetbrainsmono 7zip.install mpv f.lux.install eartrumpet nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset vscode obs-studio github-desktop
 
-Write-Output("Dark Mode...")
-Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
-
-reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
+Wait-Job $job1
+Wait-Job $job2
+Wait-Job $job3
+Wait-Job $job4

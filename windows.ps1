@@ -13,28 +13,7 @@ $job1 = Start-Job {
     Start-Process -Filepath "$HOME\Downloads\valo_install_eu.exe"
 }
 
-Write-Output("Telechargement & Installation de NGENUITY...")
-$job2 = Start-Job {
-    Invoke-WebRequest -Uri "https://hyperx.gg/ngenuity-installer" -OutFile "$HOME\Downloads\ngenuity.exe"
-    Start-Process -Filepath "$HOME\Downloads\ngenuity.exe"
-}
-
-Write-Output("Telechargement & Installation de Spotify...")
-$job3 = Start-Job {
-    Invoke-WebRequest -Uri "https://download.scdn.co/SpotifySetup.exe" -OutFile "$HOME\Downloads\SpotifySetup.exe"
-    Start-Process -Filepath "$HOME\Downloads\SpotifySetup.exe"
-}
-
-Write-Output("Telechargement & Installation de Steam...")
-$job4 = Start-Job {
-    Invoke-WebRequest -Uri "https://cdn.cloudflare.steamstatic.com/client/installer/SteamSetup.exe" -OutFile "$HOME\Downloads\SteamSetup.exe"
-    Start-Process -Filepath "$HOME\Downloads\SteamSetup.exe"
-}
-
 Write-Output("Installation des programmes...")
-choco install discord jetbrainsmono 7zip.install mpv f.lux.install eartrumpet nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset vscode obs-studio github-desktop
+choco install discord 7zip.install spotify steam vlc f.lux.install eartrumpet nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset obs-studio
 
 Wait-Job $job1
-Wait-Job $job2
-Wait-Job $job3
-Wait-Job $job4

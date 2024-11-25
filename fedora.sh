@@ -5,13 +5,13 @@ com.discordapp.Discord \
 com.spotify.Client \
 org.telegram.desktop \
 org.signal.Signal \
-com.github.tchx84.Flatseal \
-io.github.mrvladus.List \
 io.github.shiftey.Desktop \
-dev.vencord.Vesktop \
+io.github.milkshiift.GoofCord \
 rest.insomnia.Insomnia \
 io.dbeaver.DBeaverCommunity \
-org.mozilla.Thunderbird
+org.mozilla.Thunderbird \
+org.kde.konsole \
+org.mozilla.firefox
 
 echo "Repo VSCode..."
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc

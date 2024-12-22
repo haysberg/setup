@@ -7,13 +7,27 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 choco feature enable -n=allowGlobalConfirmation
 choco feature enable -n=useRememberedArgumentsForUpgrades
 
-Write-Output("Telechargement & Installation de Valorant...")
-$job1 = Start-Job {
-    Invoke-WebRequest -Uri "https://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.live.eu.exe" -OutFile "$HOME\Downloads\valo_install_eu.exe"
-    Start-Process -Filepath "$HOME\Downloads\valo_install_eu.exe"
+Write-Output("Installation des programmes...")
+$chocojob = Start-Job {
+    choco install discord 7zip.install spotify steam github-desktop vlc qbittorrent protondrive vscode protonmail protonvpn f.lux.install eartrumpet nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset obs-studio
 }
 
-Write-Output("Installation des programmes...")
-choco install discord 7zip.install spotify steam vlc f.lux.install eartrumpet nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset obs-studio
+Write-Output("Telechargement & Installation de Valorant...")
+$job1 = Start-Job {
+    Invoke-WebRequest -Uri "https://lol.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.euw.exe" -OutFile "$HOME\Downloads\lol_install.exe"
+    Start-Process -Filepath "$HOME\Downloads\lol_install.exe"
+}
+
+Write-Output("Telechargement & Installation de NGENUITY...")
+$job2 = Start-Job {
+    Invoke-WebRequest -Uri "https://hyperx.gg/ngenuity-installer" -OutFile "$HOME\Downloads\ngenuity.exe"
+    Start-Process -Filepath "$HOME\Downloads\ngenuity.exe"
+}
+
+irm https://get.activated.win | iex
 
 Wait-Job $job1
+Wait-Job $job2
+Wait-Job $chocojob
+
+Start-Process "ms-settings:defaultapps"

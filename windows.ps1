@@ -9,7 +9,7 @@ choco feature enable -n=useRememberedArgumentsForUpgrades
 
 Write-Output("Installation des programmes...")
 $chocojob = Start-Job {
-    choco install discord 7zip.install spotify steam github-desktop vlc telegram signal qbittorrent protondrive vscode protonmail protonvpn f.lux.install eartrumpet nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset obs-studio
+    choco install discord 7zip.install spotify steam github-desktop vlc telegram signal jellyfin-media-player qbittorrent protondrive vscode protonmail protonvpn f.lux.install eartrumpet nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset obs-studio
 }
 
 Write-Output("Telechargement & Installation de Valorant...")

@@ -9,10 +9,10 @@ choco feature enable -n=useRememberedArgumentsForUpgrades
 
 Write-Output("Installation des programmes...")
 $chocojob = Start-Job {
-    choco install discord 7zip.install spotify steam github-desktop vlc telegram signal jellyfin-media-player qbittorrent protondrive vscode protonmail protonvpn f.lux.install eartrumpet nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset obs-studio
+    choco install discord 7zip.install spotify steam telegram signal qbittorrent protondrive vscode protonvpn f.lux.install eartrumpet nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset obs-studio
 }
 
-Write-Output("Telechargement & Installation de Valorant...")
+Write-Output("Telechargement & Installation de LoL...")
 $job1 = Start-Job {
     Invoke-WebRequest -Uri "https://lol.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.euw.exe" -OutFile "$HOME\Downloads\lol_install.exe"
     Start-Process -Filepath "$HOME\Downloads\lol_install.exe"
@@ -29,5 +29,3 @@ irm https://get.activated.win | iex
 Wait-Job $job1
 Wait-Job $job2
 Wait-Job $chocojob
-
-Start-Process "ms-settings:defaultapps"

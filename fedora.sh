@@ -1,16 +1,10 @@
 #!/bin/bash
 
 flatpak install flathub -y \
-com.discordapp.Discord \
 com.spotify.Client \
 org.telegram.desktop \
 org.signal.Signal \
-io.github.shiftey.Desktop \
 io.github.milkshiift.GoofCord \
-rest.insomnia.Insomnia \
-io.dbeaver.DBeaverCommunity \
-org.mozilla.Thunderbird \
-org.kde.konsole \
 org.mozilla.firefox
 
 echo "Repo VSCode..."
@@ -23,7 +17,7 @@ sudo dnf remove -y *libreoffice* gnome-weather gnome-photos gnome-calendar gnome
 sudo dnf autoremove -y
 sudo dnf update -y
 
-sudo dnf install -y git code dnf-plugins-core dnf-plugins-core fish helm distrobox kubernetes-client podman podman-compose
+sudo dnf install -y git code dnf-plugins-core dnf-plugins-core fish
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
 gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrains Mono 11'

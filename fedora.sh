@@ -5,7 +5,7 @@ com.spotify.Client \
 org.telegram.desktop \
 org.signal.Signal \
 io.github.milkshiift.GoofCord \
-org.mozilla.firefox
+com.github.iwalton3.jellyfin-media-player
 
 echo "Repo VSCode..."
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -17,11 +17,8 @@ sudo dnf remove -y *libreoffice* gnome-weather gnome-photos gnome-calendar gnome
 sudo dnf autoremove -y
 sudo dnf update -y
 
-sudo dnf install -y git code dnf-plugins-core dnf-plugins-core fish
+sudo dnf install -y git code dnf-plugins-core dnf-plugins-core
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
-gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrains Mono 11'
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-sudo usermod -s /usr/bin/fish $USERNAME
-
-echo "https://github.com/MuhammedKalkan/OpenLens/releases"

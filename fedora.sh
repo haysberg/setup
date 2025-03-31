@@ -5,7 +5,8 @@ com.spotify.Client \
 org.telegram.desktop \
 org.signal.Signal \
 io.github.milkshiift.GoofCord \
-com.github.iwalton3.jellyfin-media-player
+com.github.iwalton3.jellyfin-media-player \
+io.github.shiftey.Desktop
 
 echo "Repo VSCode..."
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -22,3 +23,7 @@ sudo dnf install -y git code dnf-plugins-core dnf-plugins-core
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+brew tap hashicorp/tap
+brew install hashicorp/tap/terraform topgrade
+
+curl -LsSf https://astral.sh/uv/install.sh | sh

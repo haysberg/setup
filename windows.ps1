@@ -9,8 +9,7 @@ choco feature enable -n=useRememberedArgumentsForUpgrades
 
 Write-Output("Installation des programmes...")
 $chocojob = Start-Job {
-    choco install discord 7zip.install spotify steam telegram signal qbittorrent protondrive vscode protonvpn f.lux.install eartrumpet nvidia-display-driver --params "'/DCH'" greenshot amd-ryzen-chipset obs-studio
-}
+    choco install discord 7zip.install spotify steam f.lux.install eartrumpet
 
 Write-Output("Telechargement & Installation de LoL...")
 $job1 = Start-Job {

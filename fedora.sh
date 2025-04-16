@@ -1,12 +1,16 @@
 #!/bin/bash
 
+flatpak remote-delete fedora
+flatpak remote-delete fedora-testing
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
 flatpak install flathub -y \
 com.spotify.Client \
 org.telegram.desktop \
 org.signal.Signal \
-io.github.milkshiift.GoofCord \
 com.github.iwalton3.jellyfin-media-player \
-io.github.shiftey.Desktop
+com.discordapp.Discord \
+io.gitlab.librewolf-community
 
 echo "Repo VSCode..."
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -18,12 +22,12 @@ sudo dnf remove -y *libreoffice* gnome-weather gnome-photos gnome-calendar gnome
 sudo dnf autoremove -y
 sudo dnf update -y
 
-sudo dnf install -y git code dnf-plugins-core dnf-plugins-core
+sudo dnf install -y git code dnf-plugins-core dnf-plugins-core clang distrobox
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 brew tap hashicorp/tap
-brew install hashicorp/tap/terraform topgrade
+brew install hashicorp/tap/terraform topgrade awscli jq
 
 curl -LsSf https://astral.sh/uv/install.sh | sh

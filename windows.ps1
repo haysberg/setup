@@ -10,6 +10,7 @@ choco feature enable -n=useRememberedArgumentsForUpgrades
 Write-Output("Installation des programmes...")
 $chocojob = Start-Job {
     choco install discord 7zip.install spotify steam f.lux.install eartrumpet
+}
 
 Write-Output("Telechargement & Installation de LoL...")
 $job1 = Start-Job {
@@ -22,8 +23,6 @@ $job2 = Start-Job {
     Invoke-WebRequest -Uri "https://hyperx.gg/ngenuity-installer" -OutFile "$HOME\Downloads\ngenuity.exe"
     Start-Process -Filepath "$HOME\Downloads\ngenuity.exe"
 }
-
-irm https://get.activated.win | iex
 
 Wait-Job $job1
 Wait-Job $job2

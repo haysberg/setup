@@ -1,3 +1,5 @@
+Start-Process "https://www.amd.com/en/support/download/drivers.html"
+
 # List of package IDs to install
 $packageIds = @(
     "Discord.Discord",

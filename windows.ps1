@@ -1,3 +1,5 @@
+# To be used after activation / AtlasOS run
+
 Start-Process "https://www.amd.com/en/support/download/drivers.html"
 
 winget install -e --id RiotGames.LeagueOfLegends.EUW
@@ -7,8 +9,10 @@ winget install -e --id Spotify.Spotify
 winget install -e --id Valve.Steam
 winget install -e --id flux.flux
 winget install -e --id OpenWhisperSystems.Signal
-winget install -e --id LibreWolf.LibreWolf
 winget install -e --id Jellyfin.JellyfinMediaPlayer
+winget install -e --id VideoLAN.VLC
+winget install -e --id ProtonTechnologies.ProtonVPN
+winget install -e --id Microsoft.VisualStudioCode
 
 $shell = New-Object -ComObject "Shell.Application"
 $terminalPath = "ms-windows-store://pdp/?ProductId=9N0DX20HK701"

@@ -3,6 +3,7 @@
 Start-Process "https://www.amd.com/en/support/download/drivers.html"
 
 winget install -e --id RiotGames.LeagueOfLegends.EUW
+winget install -e --id RiotGames.Valorant.EU
 winget install -e --id File-New-Project.EarTrumpet
 winget install -e --id Discord.Discord
 winget install -e --id Spotify.Spotify
@@ -13,6 +14,8 @@ winget install -e --id Jellyfin.JellyfinMediaPlayer
 winget install -e --id VideoLAN.VLC
 winget install -e --id ProtonTechnologies.ProtonVPN
 winget install -e --id Microsoft.VisualStudioCode
+winget install -e --id GitHub.GitHubDesktop
+winget install -e --id kalilinux.kalilinux
 
 $shell = New-Object -ComObject "Shell.Application"
 $terminalPath = "ms-windows-store://pdp/?ProductId=9N0DX20HK701"

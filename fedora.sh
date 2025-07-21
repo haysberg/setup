@@ -9,12 +9,11 @@ com.spotify.Client \
 org.telegram.desktop \
 org.signal.Signal \
 com.github.iwalton3.jellyfin-media-player \
-com.discordapp.Discord \
-io.gitlab.librewolf-community
+com.discordapp.Discord
 
-echo "Repo VSCode..."
-sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+echo "Repo VSCodium..."
+sudo rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h\n" | sudo tee -a /etc/yum.repos.d/vscodium.repo
 
 echo "Installation des paquets..."
 sudo dnf check-update
@@ -22,12 +21,10 @@ sudo dnf remove -y *libreoffice* gnome-weather gnome-photos gnome-calendar gnome
 sudo dnf autoremove -y
 sudo dnf update -y
 
-sudo dnf install -y git code dnf-plugins-core dnf-plugins-core clang distrobox
+sudo dnf copr enable lilay/topgrade
+sudo dnf install -y git codium topgrade dnf-plugins-core dnf-plugins-core clang distrobox
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-brew tap hashicorp/tap
-brew install hashicorp/tap/terraform topgrade awscli jq
-
+curl -sSL https://get.docker.com/ | sh
 curl -LsSf https://astral.sh/uv/install.sh | sh
+dockerd-rootless-setuptool.sh install
+topgrade -cy

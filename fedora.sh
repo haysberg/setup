@@ -11,9 +11,9 @@ org.signal.Signal \
 com.github.iwalton3.jellyfin-media-player \
 com.discordapp.Discord
 
-echo "Repo VSCodium..."
-sudo rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h\n" | sudo tee -a /etc/yum.repos.d/vscodium.repo
+echo "Repo VSCode..."
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
 
 echo "Installation des paquets..."
 sudo dnf check-update
@@ -22,9 +22,9 @@ sudo dnf autoremove -y
 sudo dnf update -y
 
 sudo dnf copr enable lilay/topgrade
-sudo dnf install -y git codium topgrade dnf-plugins-core dnf-plugins-core clang distrobox
+sudo dnf install -y git code topgrade dnf-plugins-core dnf-plugins-core clang distrobox
 
-curl -sSL https://get.docker.com/ | sh
 curl -LsSf https://astral.sh/uv/install.sh | sh
-dockerd-rootless-setuptool.sh install
 topgrade -cy
+
+distrobox create --name kali --image kalilinux/kali-rolling

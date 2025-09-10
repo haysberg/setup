@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo hostnamectl set-hostname --static mao-spontex
+
 flatpak remote-delete fedora
 flatpak remote-delete fedora-testing
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -20,11 +22,12 @@ sudo dnf copr enable lilay/topgrade -y
 sudo dnf check-update
 sudo dnf remove -y *libreoffice* gnome-weather gnome-photos gnome-calendar gnome-maps gnome-boxes *cheese* simple-scan rhythmbox
 sudo dnf autoremove -y
-sudo dnf install -y git code topgrade dnf-plugins-core distrobox
+sudo dnf install -y git code topgrade fish dnf-plugins-core distrobox
 sudo dnf update -y
 
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 distrobox create --name kali --image kalilinux/kali-rolling
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 
 topgrade -cy

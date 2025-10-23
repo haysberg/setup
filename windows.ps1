@@ -1,6 +1,11 @@
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
-Write-Output("Installation de Chocolatey...")
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+# Enable Do Not Disturb mode
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings" -Name "NOC_GLOBAL_SETTING_TOASTS_ENABLED" -Value 0
+
+# To be used after AtlasOS
+Start-Process "https://www.amd.com/en/support/download/drivers.html"
+Start-Process "https://hyperx.com/pages/ngenuity"
 
 Write-Output("Telechargement & Installation de 2XKO...")
 $job1 = Start-Job {
@@ -8,17 +13,16 @@ $job1 = Start-Job {
     Start-Process -Filepath "$HOME\Downloads\2xko.exe"
 }
 
-choco feature enable -n=allowGlobalConfirmation
-choco feature enable -n=useRememberedArgumentsForUpgrades
-
-# To be used after activation / AtlasOS run
-
-Start-Process "https://www.amd.com/en/support/download/drivers.html"
-Start-Process "https://hyperx.com/pages/ngenuity"
-
-choco install discord spotify steam f.lux.install eartrumpet signal jellyfin-media-player
-
-# Enable Do Not Disturb mode
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings" -Name "NOC_GLOBAL_SETTING_TOASTS_ENABLED" -Value 0
+Write-Output("Installation des logiciels...")
+$job2 = Start-Job {
+    winget install -e --id File-New-Project.EarTrumpet
+    winget install -e --id Discord.Discord
+    winget install -e --id Spotify.Spotify
+    winget install -e --id Valve.Steam
+    winget install -e --id flux.flux
+    winget install -e --id OpenWhisperSystems.Signal
+    winget install -e --id Jellyfin.JellyfinMediaPlayer
+}
 
 Wait-Job $job1
+Wait-Job $job2

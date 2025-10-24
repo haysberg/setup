@@ -1,5 +1,3 @@
-if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
-
 # Enable Do Not Disturb mode
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings" -Name "NOC_GLOBAL_SETTING_TOASTS_ENABLED" -Value 0
 
@@ -22,6 +20,7 @@ $job2 = Start-Job {
     winget install -e --id flux.flux
     winget install -e --id OpenWhisperSystems.Signal
     winget install -e --id Jellyfin.JellyfinMediaPlayer
+    winget install -e --id Mozilla.Firefox.fr
 }
 
 Wait-Job $job1

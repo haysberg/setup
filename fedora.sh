@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo hostnamectl set-hostname --static mao-spontex
+sudo hostnamectl set-hostname --static linucc
 
 flatpak remote-delete fedora
 flatpak remote-delete fedora-testing
@@ -11,23 +11,15 @@ com.spotify.Client \
 org.telegram.desktop \
 org.signal.Signal \
 com.github.iwalton3.jellyfin-media-player \
-com.discordapp.Discord
-
-echo "Repo VSCode..."
-sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
+com.discordapp.Discord \
+dev.zed.Zed
 
 echo "Installation des paquets..."
 sudo dnf copr enable lilay/topgrade -y
 sudo dnf check-update
 sudo dnf remove -y *libreoffice* gnome-weather gnome-photos gnome-calendar gnome-maps gnome-boxes *cheese* simple-scan rhythmbox
 sudo dnf autoremove -y
-sudo dnf install -y git code topgrade fish dnf-plugins-core distrobox
-sudo dnf update -y
+sudo dnf install -y git topgrade
+topgrade -cy
 
 curl -LsSf https://astral.sh/uv/install.sh | sh
-
-distrobox create --name kali --image kalilinux/kali-rolling
-curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
-
-topgrade -cy

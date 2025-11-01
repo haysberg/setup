@@ -12,16 +12,14 @@ $job1 = Start-Job {
 }
 
 Write-Output("Installation des logiciels...")
-$job2 = Start-Job {
-    winget install -e --id File-New-Project.EarTrumpet
-    winget install -e --id Discord.Discord
-    winget install -e --id Spotify.Spotify
-    winget install -e --id Valve.Steam
-    winget install -e --id flux.flux
-    winget install -e --id OpenWhisperSystems.Signal
-    winget install -e --id Jellyfin.JellyfinMediaPlayer
-    winget install -e --id Mozilla.Firefox.fr
-}
+winget install -e --id File-New-Project.EarTrumpet
+winget install -e --id Discord.Discord
+winget install -e --id Spotify.Spotify
+winget install -e --id Valve.Steam
+winget install -e --id flux.flux
+winget install -e --id OpenWhisperSystems.Signal
+winget install -e --id Jellyfin.JellyfinMediaPlayer
+winget install -e --id Mozilla.Firefox.fr
+winget install -e --id Telegram.TelegramDesktop
 
 Wait-Job $job1
-Wait-Job $job2

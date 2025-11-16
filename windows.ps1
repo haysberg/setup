@@ -27,3 +27,4 @@ winget install -e --id Mozilla.Firefox.fr
 winget install -e --id Telegram.TelegramDesktop
 
 Wait-Job $job1
+Wait-Job $job2

@@ -25,6 +25,8 @@ winget install -e --id OpenWhisperSystems.Signal
 winget install -e --id Jellyfin.JellyfinMediaPlayer
 winget install -e --id Mozilla.Firefox.fr
 winget install -e --id Telegram.TelegramDesktop
+winget install -e --id Proton.ProtonDrive
+
 
 Wait-Job $job1
 Wait-Job $job2

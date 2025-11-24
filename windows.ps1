@@ -11,12 +11,6 @@ $job1 = Start-Job {
     Start-Process -Filepath "$HOME\Downloads\2xko.exe"
 }
 
-Write-Output("Telechargement & Installation de Vesktop...")
-$job2 = Start-Job {
-    Invoke-WebRequest -Uri "https://vencord.dev/download/vesktop/universal/windows" -OutFile "$HOME\Downloads\vesktop.exe"
-    Start-Process -Filepath "$HOME\Downloads\vesktop.exe"
-}
-
 winget install -e --id File-New-Project.EarTrumpet
 winget install -e --id Spotify.Spotify
 winget install -e --id Valve.Steam
@@ -26,7 +20,7 @@ winget install -e --id Jellyfin.JellyfinMediaPlayer
 winget install -e --id Mozilla.Firefox.fr
 winget install -e --id Telegram.TelegramDesktop
 winget install -e --id Proton.ProtonDrive
+winget install --id=Vendicated.Vencord -e
 
 
 Wait-Job $job1
-Wait-Job $job2

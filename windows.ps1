@@ -16,10 +16,11 @@ winget install -e --id Valve.Steam
 winget install -e --id flux.flux
 winget install -e --id OpenWhisperSystems.Signal
 winget install -e --id Jellyfin.JellyfinMediaPlayer
-winget install -e --id Mozilla.Firefox.fr
 winget install -e --id Telegram.TelegramDesktop
 winget install -e --id Proton.ProtonDrive
 winget install -e --id Vencord.Vesktop
+winget install -e --id Canva.Affinity
+winget install -e --id Telegram.TelegramDesktop
 
 
 Wait-Job $job1

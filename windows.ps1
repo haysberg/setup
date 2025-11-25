@@ -3,7 +3,6 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Notifica
 
 # To be used after AtlasOS
 Start-Process "https://www.amd.com/en/support/download/drivers.html"
-Start-Process "https://hyperx.com/pages/ngenuity"
 
 Write-Output("Telechargement & Installation de 2XKO...")
 $job1 = Start-Job {
@@ -20,7 +19,7 @@ winget install -e --id Jellyfin.JellyfinMediaPlayer
 winget install -e --id Mozilla.Firefox.fr
 winget install -e --id Telegram.TelegramDesktop
 winget install -e --id Proton.ProtonDrive
-winget install --id=Vendicated.Vencord -e
+winget install -e --id Vencord.Vesktop
 
 
 Wait-Job $job1

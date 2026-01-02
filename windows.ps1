@@ -1,6 +1,3 @@
-# Enable Do Not Disturb mode
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings" -Name "NOC_GLOBAL_SETTING_TOASTS_ENABLED" -Value 0
-
 # To be used after AtlasOS
 Start-Process "https://www.amd.com/en/support/download/drivers.html"
 
@@ -10,17 +7,29 @@ $job1 = Start-Job {
     Start-Process -Filepath "$HOME\Downloads\2xko.exe"
 }
 
-winget install -e --id File-New-Project.EarTrumpet
-winget install -e --id Spotify.Spotify
-winget install -e --id Valve.Steam
-winget install -e --id flux.flux
-winget install -e --id OpenWhisperSystems.Signal
-winget install -e --id Jellyfin.JellyfinMediaPlayer
-winget install -e --id Telegram.TelegramDesktop
-winget install -e --id Proton.ProtonDrive
-winget install -e --id Vencord.Vesktop
-winget install -e --id Canva.Affinity
-winget install -e --id Telegram.TelegramDesktop
+$winget_packages = @(
+    "File-New-Project.EarTrumpet",
+    "TIDALMusicAS.TIDAL",
+    "Valve.Steam",
+    "flux.flux",
+    "OpenWhisperSystems.Signal",
+    "Jellyfin.JellyfinMediaPlayer",
+    "Telegram.TelegramDesktop",
+    "Proton.ProtonDrive",
+    "SpikeHD.Dorion",
+    "Canva.Affinity",
+    "Microsoft.WindowsTerminal"
+)
 
+$jobs = @()
+foreach ($package in $winget_packages) {
+    $jobs += Start-Job -ScriptBlock {
+        param($pkg)
+        winget install -e --id $pkg --accept-source-agreements --accept-package-agreements
+    } -ArgumentList $package
+}
 
+Write-Output "Waiting for winget installations to complete..."
+Wait-Job -Job $jobs
+Write-Output "All winget installations are complete."
 Wait-Job $job1

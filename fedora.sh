@@ -16,7 +16,7 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 topgrade -cy
 
 flatpak install flathub -y \
-com.spotify.Client \
+com.mastermindzh.tidal-hifi \
 org.telegram.desktop \
 org.signal.Signal \
 com.github.iwalton3.jellyfin-media-player \

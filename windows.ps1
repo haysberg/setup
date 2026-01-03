@@ -11,5 +11,5 @@ $job1 = Start-Job {
 # To be used after AtlasOS
 Start-Process "https://www.amd.com/en/support/download/drivers.html"
 
-choco install f.lux tidal steam eartrumpet signal telegram protondrive dorion 
+choco install f.lux tidal steam eartrumpet signal telegram protondrive dorion jellyfin-media-player
 Wait-Job $job1

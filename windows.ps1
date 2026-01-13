@@ -7,6 +7,8 @@ $job1 = Start-Job {
     Start-Process -Filepath "$HOME\Downloads\2xko.exe"
 }
 
+Start-Process powershell -Verb RunAs -ArgumentList "-Command & {irm asheroto.com/winget | iex}" -Wait
+
 $winget_packages = @(
     "xmn.BetterTrumpet ",
     "TIDALMusicAS.TIDAL",

@@ -10,7 +10,7 @@ $job1 = Start-Job {
 Start-Process powershell -Verb RunAs -ArgumentList "-Command & {irm asheroto.com/winget | iex}" -Wait
 
 $winget_packages = @(
-    "xmn.BetterTrumpet ",
+    "File-New-Project.EarTrumpet",
     "TIDALMusicAS.TIDAL",
     "Valve.Steam",
     "flux.flux",

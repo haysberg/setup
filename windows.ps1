@@ -11,7 +11,7 @@ Start-Process powershell -Verb RunAs -ArgumentList "-Command & {irm asheroto.com
 
 $winget_packages = @(
     "File-New-Project.EarTrumpet",
-    "TIDALMusicAS.TIDAL",
+    "Spotify.Spotify",
     "Valve.Steam",
     "flux.flux",
     "OpenWhisperSystems.Signal",

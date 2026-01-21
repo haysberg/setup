@@ -31,6 +31,25 @@ foreach ($package in $winget_packages) {
     } -ArgumentList $package
 }
 
+# Remove the Game Bar for the current user
+Get-AppxPackage Microsoft.XboxGamingOverlay | Remove-AppxPackage
+
+# Remove the Game Bar for all users on the PC
+Get-AppxPackage -AllUsers Microsoft.XboxGamingOverlay | Remove-AppxPackage -AllUsers
+
+# Prevent Windows from reinstalling it automatically
+Get-ProvisionedAppxPackage -Online | Where-Object { $_.PackageName -match "XboxGamingOverlay" } | ForEach-Object { Remove-ProvisionedAppxPackage -Online -PackageName $_.PackageName }
+
+# Disable Game DVR and App Capture
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\GameDVR" -Name "AppCaptureEnabled" -Value 0 -Type DWord
+Set-ItemProperty -Path "HKCU:\System\GameConfigStore" -Name "GameDVR_Enabled" -Value 0 -Type DWord
+
+# Redirects the ms-gamebar link to do nothing
+reg add "HKEY_CLASSES_ROOT\ms-gamebar" /f /ve /d "URL:ms-gamebar"
+# reg add "HKEY_CLASSES_ROOT\ms-gamebar" /f /v "NoOpenWith" /d ""
+reg add "HKEY_CLASSES_ROOT\ms-gamebar\shell\open\command" /f /ve /d "$env:SystemRoot\System32\systray.exe"
+
+
 Write-Output "Waiting for winget installations to complete..."
 Wait-Job -Job $jobs
 Write-Output "All winget installations are complete."

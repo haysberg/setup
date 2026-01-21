@@ -31,23 +31,22 @@ foreach ($package in $winget_packages) {
     } -ArgumentList $package
 }
 
-# Remove the Game Bar for the current user
+# Remove Xbox App
 Get-AppxPackage Microsoft.XboxGamingOverlay | Remove-AppxPackage
 
-# Remove the Game Bar for all users on the PC
-Get-AppxPackage -AllUsers Microsoft.XboxGamingOverlay | Remove-AppxPackage -AllUsers
+# Disable ms-gamingoverlay links
+reg add HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\GameDVR /f /t REG_DWORD /v "AppCaptureEnabled" /d 0
+reg add HKEY_CURRENT_USER\System\GameConfigStore /f /t REG_DWORD /v "GameDVR_Enabled" /d 0
 
-# Prevent Windows from reinstalling it automatically
-Get-ProvisionedAppxPackage -Online | Where-Object { $_.PackageName -match "XboxGamingOverlay" } | ForEach-Object { Remove-ProvisionedAppxPackage -Online -PackageName $_.PackageName }
-
-# Disable Game DVR and App Capture
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\GameDVR" -Name "AppCaptureEnabled" -Value 0 -Type DWord
-Set-ItemProperty -Path "HKCU:\System\GameConfigStore" -Name "GameDVR_Enabled" -Value 0 -Type DWord
-
-# Redirects the ms-gamebar link to do nothing
-reg add "HKEY_CLASSES_ROOT\ms-gamebar" /f /ve /d "URL:ms-gamebar"
-# reg add "HKEY_CLASSES_ROOT\ms-gamebar" /f /v "NoOpenWith" /d ""
-reg add "HKEY_CLASSES_ROOT\ms-gamebar\shell\open\command" /f /ve /d "$env:SystemRoot\System32\systray.exe"
+# Disable ms-gamebar links
+reg add HKCR\ms-gamebar /f /ve /d URL:ms-gamebar 2>&1 >''
+reg add HKCR\ms-gamebar /f /v "URL Protocol" /d "" 2>&1 >''
+reg add HKCR\ms-gamebar /f /v "NoOpenWith" /d "" 2>&1 >''
+reg add HKCR\ms-gamebar\shell\open\command /f /ve /d "\`"$env:SystemRoot\System32\systray.exe\`"" 2>&1 >''
+reg add HKCR\ms-gamebarservices /f /ve /d URL:ms-gamebarservices 2>&1 >''
+reg add HKCR\ms-gamebarservices /f /v "URL Protocol" /d "" 2>&1 >''
+reg add HKCR\ms-gamebarservices /f /v "NoOpenWith" /d "" 2>&1 >''
+reg add HKCR\ms-gamebarservices\shell\open\command /f /ve /d "\`"$env:SystemRoot\System32\systray.exe\`"" 2>&1 >''
 
 
 Write-Output "Waiting for winget installations to complete..."

@@ -20,8 +20,12 @@ $winget_packages = @(
     "Proton.ProtonDrive",
     "Vencord.Vesktop",
     "Canva.Affinity",
-    "Microsoft.WindowsTerminal"
+    "Microsoft.WindowsTerminal",
+    "topgrade-rs.topgrade",
+    "ImputNet.Helium"
 )
+
+Start-Process powershell -Verb RunAs -ArgumentList "-NoExit", "-Command", "Install-Module PSWindowsUpdate"
 
 $jobs = @()
 foreach ($package in $winget_packages) {

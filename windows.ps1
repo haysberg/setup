@@ -22,9 +22,10 @@ $winget_packages = @(
     "Canva.Affinity",
     "topgrade-rs.topgrade",
     "ImputNet.Helium",
-    "9NZKPSTSNW4P --source msstore"
+    "topgrade-rs.topgrade"
 )
 
+Start-Process powershell -Verb RunAs -ArgumentList "sudo config --enable normal"
 Start-Process powershell -Verb RunAs -ArgumentList "-NoExit", "-Command", "Install-Module PSWindowsUpdate"
 
 $jobs = @()
@@ -35,8 +36,12 @@ foreach ($package in $winget_packages) {
     } -ArgumentList $package
 }
 
+winget install 9NZKPSTSNW4P --source msstore
 
 Write-Output "Waiting for winget installations to complete..."
 Wait-Job -Job $jobs
 Write-Output "All winget installations are complete."
 Wait-Job $job1
+
+
+topgrade -cy

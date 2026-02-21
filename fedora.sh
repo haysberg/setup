@@ -1,10 +1,7 @@
 #!/bin/bash
 
 sudo hostnamectl set-hostname --static linucc
-
-brew install topgrade
-
-topgrade -cy
+ujust update
 
 flatpak install flathub -y \
 com.spotify.Client \
@@ -15,4 +12,3 @@ dev.vencord.Vesktop \
 dev.zed.Zed
 
 curl -LsSf https://astral.sh/uv/install.sh | sh
-

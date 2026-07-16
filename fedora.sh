@@ -1,14 +1,14 @@
 #!/bin/bash
 
-sudo hostnamectl set-hostname --static linucc
-ujust update
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 flatpak install flathub -y \
 com.spotify.Client \
 org.telegram.desktop \
 org.signal.Signal \
 org.jellyfin.JellyfinDesktop \
-dev.vencord.Vesktop \
+com.discordapp.Discord \
 dev.zed.Zed
 
 curl -LsSf https://astral.sh/uv/install.sh | sh
+brew install topgrade

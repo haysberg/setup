@@ -12,3 +12,4 @@ dev.zed.Zed
 
 curl -LsSf https://astral.sh/uv/install.sh | sh
 brew install topgrade
+curl -f https://zed.dev/install.sh | sh

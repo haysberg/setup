@@ -17,7 +17,7 @@ done
 flatpak uninstall -y --unused 2>/dev/null
 
 curl -LsSf https://astral.sh/uv/install.sh | sh
-brew install topgrade starship fzf fastfetch
+brew install topgrade starship fzf fastfetch distrobox
 curl -f https://zed.dev/install.sh | sh
 
 ### Shell configuration ###
@@ -60,6 +60,9 @@ git config --global user.email 29246792+haysberg@users.noreply.github.com
 
 ### KDE configuration ###
 
+# Global dark theme (Fedora ships the light variant by default)
+plasma-apply-lookandfeel -a org.fedoraproject.fedoradark.desktop
+
 # CaskaydiaCove Nerd Font (Cascadia Code + icon glyphs), set as the fixed-width font
 mkdir -p ~/.local/share/fonts
 curl -fsSL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/CascadiaCode.zip -o /tmp/caskaydia.zip
@@ -89,6 +92,10 @@ kwriteconfig6 --file kcminputrc --group Keyboard --key NumLock 0
 
 # No virtual keyboard: Fedora enables Plasma Keyboard by default, empty value = none
 kwriteconfig6 --file kwinrc --group Wayland --key InputMethod ""
+
+# No sticky screen edges: the cursor moves freely between monitors
+kwriteconfig6 --file kwinrc --group EdgeBarrier --key EdgeBarrier 0
+kwriteconfig6 --file kwinrc --group EdgeBarrier --key CornerBarrier false
 
 # Night light on a fixed schedule, 10PM to 7AM
 kwriteconfig6 --file kwinrc --group NightColor --key Active true
@@ -121,11 +128,18 @@ const clock = panel.widgets("org.kde.plasma.digitalclock")[0];
 if (clock) {
     clock.currentConfigGroup = ["Appearance"];
     clock.writeConfig("showDate", false);
+    clock.writeConfig("autoFontAndSize", false);
+    clock.writeConfig("fontFamily", "CaskaydiaCove Nerd Font Propo");
+    clock.writeConfig("fontSize", 14);
+    clock.writeConfig("boldText", true);
+    clock.writeConfig("fontStyleName", "Bold");
+    clock.writeConfig("fontWeight", 700);
 }
 
 const tasks = panel.widgets("org.kde.plasma.icontasks")[0];
 if (tasks) {
     tasks.currentConfigGroup = ["General"];
+    tasks.writeConfig("indicateAudioStreams", false);
     tasks.writeConfig("launchers", [
         "applications:org.kde.konsole.desktop",
         "preferred://filemanager",
@@ -187,5 +201,5 @@ User=$USER
 Session=plasma
 EOF
 
-# Verbose boot: drop the Plymouth splash (rhgb) and show kernel/systemd messages (quiet)
-sudo rpm-ostree kargs --delete-if-present=rhgb --delete-if-present=quiet
+# Plymouth splash on boot (graphical LUKS password prompt)
+sudo rpm-ostree kargs --append-if-missing=rhgb --append-if-missing=quiet

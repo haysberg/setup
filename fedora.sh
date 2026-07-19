@@ -17,7 +17,7 @@ done
 flatpak uninstall -y --unused 2>/dev/null
 
 curl -LsSf https://astral.sh/uv/install.sh | sh
-brew install topgrade starship fzf fastfetch distrobox
+brew install topgrade starship fzf fastfetch distrobox bat eza dust
 curl -f https://zed.dev/install.sh | sh
 
 ### Shell configuration ###
@@ -46,6 +46,22 @@ EOF
 
 cat > ~/.bashrc.d/40-starship.sh <<'EOF'
 command -v starship > /dev/null && eval "$(starship init bash)"
+EOF
+
+cat > ~/.bashrc.d/50-aliases.sh <<'EOF'
+if command -v eza &>/dev/null; then
+    alias ls='eza'
+    alias ll='eza -la --git'
+    alias lt='eza --tree --level=2'
+fi
+
+if command -v bat &>/dev/null; then
+    alias cat='bat --paging=never'
+fi
+
+if command -v dust &>/dev/null; then
+    alias du='dust'
+fi
 EOF
 
 # Starship theme: Hydro (plain Unicode, no Nerd Font needed). Upstream runs its
